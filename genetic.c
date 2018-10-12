@@ -294,7 +294,7 @@ void cycle_crossover(individual * population, int id_1, int id_2, int * child_1,
  
         if (first == last){
             scambia(&parent_1, &parent_2);          //Una volta terminato il ciclo scambiamo i genitori in modo da copiare le città al contrario
-            for (j = 0; flags[j]; j++);             //Cerchiamo una colonna libera
+            while (flags[j]) j++;                   //Cerchiamo una colonna libera
             first = population[id_1].solution[j];   //Reinizializziamo il primo elemento del ciclo
         }  
     }
