@@ -1,7 +1,7 @@
 # Travelling-Salesman-Genetic
 A small genetic algorithm developed in C with the objective of solving the Travelling Salesman Problem.
 The `genetic.c` file contains some explanation of how the program works.
-The `progetto_algoritmi.pdf` file contains a detailed explanation of the code, the algorithms used and an analisys of the spatial and time complexity (in italian).
+Instead, `progetto_algoritmi.pdf` file contains a detailed explanation of the code, the algorithms used and an analisys of the spatial and time complexity (in italian).
 
 ## Compiling and usage
 To compile and execute, use the commands:
