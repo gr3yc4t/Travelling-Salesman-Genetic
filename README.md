@@ -15,7 +15,7 @@ This script will replicate the various generations and show graphically how the 
 
 ## Possible improvements
 * Choosing better hyper parameters, for a given problem, can reduce the required number of iterations and avoid local minimums
-* Changing the cycle crossover (CX) to a better crossover function. The CX is one of the slowest crossovers for genetic algorithms (as shown [here](https://arxiv.org/ftp/arxiv/papers/1203/1203.3097.pdf), but it's the easiest to implement. Other crossovers also have a better complexity.
+* Changing the cycle crossover (CX) to a better crossover function. The CX is one of the slowest crossovers for genetic algorithms (as shown [here](https://arxiv.org/ftp/arxiv/papers/1203/1203.3097.pdf)), but it is the easiest to implement. Other crossovers also have a better complexity.
 * Changing the way in which the population is extracted for the reproduction can improve a lot when it comes to execution times. Extracting an index from the repartition array takes O(n) time, but using something like the [Vose's Alias Method](http://www.keithschwarz.com/darts-dice-coins/) can reduce this time to O(1). This extraction is done for every member of the population array, so this improvement would make the program a lot faster, allowing for more iterations.
 * Many other small improvements can be made, here only the most important ones were explained.
 
