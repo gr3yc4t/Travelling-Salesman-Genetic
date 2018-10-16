@@ -239,10 +239,10 @@ individual * crossover(individual * population, int * candidates){
     individual * new_gen = malloc(sizeof(individual) * POPULATION_COUNT);
  
     for (int i = 0; i < POPULATION_COUNT; i+=2){
-        cycle_crossover(population, candidates[i], candidates[i+1], new_gen[i].solution, new_gen[i+1].solution);  //Eseguiamo il crossover a due a due scegliendo come genitori due candidates scelti tramite l'indice, salviamo i figli in new_gen
+        cycle_crossover(population, candidates[i], candidates[i+1], new_gen[i].solution, new_gen[i+1].solution);   //We perform the crossover two by two, choosing as parents two candidates choosen by index, then we save the offspring into new_gen
     }
  
-    free(candidates);    //Non servono più
+    free(candidates);    //We don't need them anymore
  
     debug("Reproduction performed");
  
@@ -255,7 +255,7 @@ void mutation(individual * population){
  
     for (int i = 0; i < POPULATION_COUNT; i++){
  
-        if (rand() < p){    //In this case p = RAND_MAX*0.25 = RAND_MAX/4, because rand() generates a number in [0, RAND_MAX]  and therefore this condition has probability 1/4 of being true
+        if (rand() < p){    //In this case p = RAND_MAX*0.25 = RAND_MAX/4, because rand() generates a number in [0, RAND_MAX] and therefore this condition has probability 1/4 of being true
             do {
                 x = rand() % CITY_COUNT;
                 y = rand() % CITY_COUNT;
