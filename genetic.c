@@ -4,9 +4,9 @@
 #include <math.h>
  
 #define DEBUG 0
-#define X_MAX 700                   //Grid dimensions
-#define Y_MAX 700
-#define CITY_COUNT 25               //Number of cities
+#define X_MAX 750                   //Grid dimensions
+#define Y_MAX 750
+#define CITY_COUNT 50               //Number of cities
 #define POPULATION_COUNT 256        //Number of individuals
 #define ITERATION_COUNT 10000       //Max number of iterations allowed
 #define MUTATION_LIKELIHOOD 0.25    //Random mutation probability
@@ -51,16 +51,15 @@ int main(){
  
     setup_cities(cities_map);       //Generates (randomically) the cities position
  
-    FILE * fd;
- 
-    fd = fopen("data.txt", "w");    //this file will be used in the graphical script to show the various generations
+    FILE * fd = fopen("data.txt", "w");    //this file will be used in the graphical script to show the various generations
     if (fd == NULL){
         printf("Fatal error: could not open the data file\n");
         return -1;
     }
  
+    fprintf(fd, "%d,%d\n", X_MAX, Y_MAX);       //We save the grid size...
     fprintf(fd, "%d\n", CITY_COUNT);        //We save the number of cities generated...
- 
+
     for (int i = 0; i < CITY_COUNT; i++){   //...and the various coordinates
         fprintf(fd, "%d,%d\n", cities_map[i].x, cities_map[i].y);
     }
@@ -89,7 +88,7 @@ int main(){
             }
             fprintf(fd, "\n");
  
-            printf("Current generation: %d | Better length: %f\n", i, length);
+            printf("Current generation: %d | Best length: %f\n", i, length);
         }
  
         candidates = selection(cdf);        //candidates is an integer vector containing the indexes of those that are going to reproduce
@@ -245,7 +244,7 @@ individual * crossover(individual * population, int * candidates){
  
     free(candidates);    //Non servono più
  
-    debug("Riproduzione effettuata");
+    debug("Reproduction performed");
  
     return new_gen;
 }
@@ -262,7 +261,7 @@ void mutation(individual * population){
                 y = rand() % CITY_COUNT;
             } while (x == y);   //we should not commute x with itself, it's useless
  
-            scambia(&population[i].solution[x], &population[i].solution[y]);    //Swap the cities
+            swap(&population[i].solution[x], &population[i].solution[y]);    //Swap the cities
         }
     }
  
@@ -293,7 +292,7 @@ void cycle_crossover(individual * population, int id_1, int id_2, int * child_1,
         j = lookup[last];   //search for last in id_1
  
         if (first == last){
-            scambia(&parent_1, &parent_2);          //We use this every cycle to copy the cities in the childs in reverse order (swapping the parents)
+            swap(&parent_1, &parent_2);          //We use this every cycle to copy the cities in the childs in reverse order (swapping the parents)
             while (flags[j]) j++;                   //Search for a free column
             first = population[id_1].solution[j];   //Reinitizialize first element of the cycle
         }  
